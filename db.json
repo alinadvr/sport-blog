@@ -1,0 +1,59 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "How To Find A Workout Buddy",
+      "date": "Dec 23, 2022",
+      "author_id": 1,
+      "image": "1671844673575_tips-for-finding-the-perfect-workout-buddy.jpg",
+      "category_id": 5,
+      "likes_user_id": [
+        1
+      ],
+      "saved_user_id": [
+        1
+      ],
+      "text": "Hey, you don't have to be afraid to admit it can get lonely out there. Whether you're on the track, in the pool, or picking up pieces of scrap metal at your local junkyard, training is usually a solitary job. But sometimes it's nice to have a **workout buddy**.\r\n\r\nWhen you're sitting in the back row of an exercise bike or running next to a zombie on a treadmill with headphones on, it may seem like solidarity, but it's actually closer to loneliness. And that's not bad. Training is a time to focus on yourself, clear your head. In many ways, spending this time alone is beneficial.\r\n\r\nBut a heavy sweat doesn't mean you have to discipline yourself in some dark training dungeon. Even when Bruce Wayne tried to escape the Pit in The Dark Knight Rises, all of his prison boys were chanting and cheering for him. And that's one of the **great things about workout buddies** (and prison buddies, I guess).\r\n\r\nThere is a feeling that \"yes, it's hard, but we're all in this together.\" So do yourself a favor and consider calling up a workout buddy from time to time.\r\n\r\nBut don't call just _anyone_.\r\n\r\nYou must weigh the pros and cons and look at the best-known previous examples. Below are some of the options available for you to consider:\r\n\r\nIf you do morning exercises (or want to do them), this option is worth exploring. Someone who is most likely to be within screaming distance when you wake up will interfere with your sleep and relaxation. The same goes for sharing the fridge. If you're trying to eat healthy, your roommate won't let you get into Ben and Jerry's. If you can stick to a routine, you can easily motivate each other to get up in the morning, go to the gym, and stay disciplined.\r\n\r\n**Cons**: Unless you prefer the same gym. Or if you hate your roommate.\r\n\r\n**Favorite example**: Jenko (Channing Tatum) and Zuk (Wyatt Russell) in a workout montage at 22 Jump Street. The QB/WR duo are relentlessly spinning the iron in their room — _literally, that's all they do_."
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "title": "Recipes"
+    },
+    {
+      "id": 2,
+      "title": "Nutrition"
+    },
+    {
+      "id": 3,
+      "title": "Weight Los"
+    },
+    {
+      "id": 4,
+      "title": "Fitness"
+    },
+    {
+      "id": 5,
+      "title": "Inspiration"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "post_id": 1,
+      "text": "Great article"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "nickname": "Alina Dvoriannykova",
+      "email": "dvoriann",
+      "password": "$2b$12$ZRixrqfA9YceXnz3OIy1me0xgK2DgPPH.SCcgWn21hw0VFaFmrNdu",
+      "image": "1671842775403_avatar.jpg",
+      "description": "Some description"
+    }
+  ]
+}

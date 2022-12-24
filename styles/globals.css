@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    background-color: #F5F5F5;
+}
+
+.activeButton {
+    background-color: #42A4FF;
+    color: white;
+}
+
+.posts {
+    padding: 1em;
+    display: grid;
+    gap: 0.7em;
+}
+
+.post {
+    margin: auto;
+    border: solid 2px #E6E6E6;
+    border-radius: 0.75em;
+    background-color: white;
+    text-align: center;
+    padding: 1em;
+    display: grid;
+    gap: 1rem;
+}
+
+.central-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.editor {
+    padding-left: 0.75rem;
+    background-color: #F5F5F5;
+    border-radius: 0.75rem;
+    height: 300px;
+}
+
+.editor:focus {
+    background-color: white;
+    border: solid 2px #42A4FF;
+}
+
