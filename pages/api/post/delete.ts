@@ -1,12 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import fs from "fs/promises";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { sessionOptions } from "../../../lib/session";
 
 export default withIronSessionApiRoute(deletePostRoute, sessionOptions);
 
 async function deletePostRoute(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = JSON.parse(req.body);
+  const { id, image } = req.body;
+
+  try {
+    await fs.unlink(`./public/images/posts/${image}`);
+  } catch (error) {
+    console.log(error);
+  }
 
   try {
     await axios.delete(`http://localhost:3001/posts/${id}`);

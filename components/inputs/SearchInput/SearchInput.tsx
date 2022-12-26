@@ -30,13 +30,13 @@ export const SearchInput = ({ styles }: SearchInputFieldProps) => {
           dispatch(setFilterTitle(event.target.value));
         }}
         className={
-          "h-10 rounded-lg border border-gray-200 pl-3 outline-none transition-all focus:border-2 focus:border-blue " +
+          "h-10 rounded-lg border pl-3 outline-none transition-all focus:border-2 focus:border-blue-400 " +
           styles
         }
         placeholder="Search..."
       />
       <XMarkIcon
-        className="absolute top-2 right-3 w-6 cursor-pointer text-gray-300 transition-colors hover:text-black"
+        className="absolute top-2 right-3 w-6 cursor-pointer text-gray-300 transition-colors hover:text-gray-600"
         onClick={handleClearClick}
       />
     </div>

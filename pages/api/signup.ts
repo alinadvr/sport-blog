@@ -8,17 +8,19 @@ import { sessionOptions } from "../../lib/session";
 export default withIronSessionApiRoute(signupRoute, sessionOptions);
 
 async function signupRoute(req: NextApiRequest, res: NextApiResponse) {
-  const { email, password } = JSON.parse(req.body);
+  const { email, password } = req.body;
 
   try {
-    if (!email || !password) throw new Error("Missing e-mail or password");
+    if (!email || !password)
+      return res.status(400).json({ message: "Missing e-mail or password" });
 
     const users: UsersDataType[] = await fetch(
       "http://localhost:3001/users"
     ).then((response) => response.json());
 
     const isUserExist = users.filter((user) => user.email === email).length;
-    if (isUserExist) throw new Error("User already exists");
+    if (isUserExist)
+      return res.status(400).json({ message: "User already exists" });
 
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(password, salt);

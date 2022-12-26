@@ -20,10 +20,11 @@ export const TextInput = ({
   placeholder,
 }: TextInputFieldProps) => {
   const styles: { [type: string]: string } = {
-    post: "rounded-xl w-full h-12 pl-3 box-border outline-none focus:border-blue focus:border-2 focus:bg-white",
+    post: "transition-all rounded-xl w-full h-12 pl-3 outline-none focus:border-blue-400 focus:border-2 focus:bg-white",
     login:
-      "rounded-full w-full h-12 pl-3 box-border outline-none focus:border-blue focus:border-2 focus:bg-white",
-    account: "w-full text-xl border-2 rounded-xl outline-none pl-3 py-0.5",
+      "transition-all rounded-full w-full h-12 pl-3 outline-none focus:border-blue-400 focus:border-2 focus:bg-white",
+    account:
+      "transition-all w-full text-xl border-2 rounded-xl outline-none pl-3 py-0.5",
   };
 
   return (
@@ -36,7 +37,7 @@ export const TextInput = ({
         className={classNames(
           styles[styleType],
           error
-            ? "border-2 border-rose-500 bg-white focus:border-rose-500"
+            ? "border-2 border-red-500 bg-white focus:border-red-500"
             : styleType === "account"
             ? "bg-white"
             : "bg-gray-100"

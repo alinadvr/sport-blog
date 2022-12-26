@@ -32,9 +32,7 @@ const Account: NextPage<AccountPageProps> = ({
       isBackToBlogButton={true}
       avatar={currentUser?.image}
     >
-      <main>
-        <Author userId={currentUser?.id} {...user} userPosts={userPosts} />
-      </main>
+      <Author userId={currentUser?.id} {...user} userPosts={userPosts} />
     </Layout>
   );
 };

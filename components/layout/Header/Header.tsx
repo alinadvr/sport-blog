@@ -61,7 +61,7 @@ export const Header = ({ isLoggedIn, categories, userAvatar }: Props) => {
           {/****************** Mobile Version ******************/}
           <div ref={accountBlockMobileRef}>
             <button
-              className="flex h-12 w-12 items-center justify-center hover:rounded-xl hover:border-2 hover:border-blue sm:hidden"
+              className="hover:border-blue flex h-12 w-12 items-center justify-center hover:rounded-xl hover:border-2 sm:hidden"
               onClick={() => setIsBlockVisible(true)}
             >
               <Bars3Icon />

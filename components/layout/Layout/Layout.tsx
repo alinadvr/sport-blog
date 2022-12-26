@@ -87,6 +87,8 @@ export const Layout = ({
 
         <main>{children}</main>
       </div>
+
+      <footer />
     </div>
   );
 };

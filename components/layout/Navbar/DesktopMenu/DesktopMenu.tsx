@@ -1,4 +1,4 @@
-import { AccountBlockButton } from "../../../buttons/AccountBlockButton";
+import { AccountBlockButton } from "../../../buttons/AccountBlockButton/";
 
 export const DesktopMenu = () => {
   return (

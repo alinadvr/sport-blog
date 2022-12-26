@@ -34,7 +34,6 @@ const Account: NextPage<AccountPageProps> = ({ user, userPosts }) => {
 
   const [saved, setSaved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(user);
 
   const handleChangeUserData = async () => {
     setIsLoading(true);
@@ -116,9 +115,7 @@ const Account: NextPage<AccountPageProps> = ({ user, userPosts }) => {
               <div className="flex justify-between">
                 {!displayNickNameInput ? (
                   <>
-                    <p className="text-left text-xl text-black-200 sm:text-3xl">
-                      {nickname}
-                    </p>
+                    <p className="text-left text-xl sm:text-3xl">{nickname}</p>
                     <PencilIcon
                       className="w-6 cursor-pointer"
                       onClick={() => setDisplayNickNameInput(true)}
@@ -139,7 +136,7 @@ const Account: NextPage<AccountPageProps> = ({ user, userPosts }) => {
                   </>
                 )}
               </div>
-              <p className="text-black-200">{user.email}</p>
+              <p>{user.email}</p>
               <p className="text-gray-300">Posts amount: {userPosts.length}</p>
               <div className="flex items-start justify-between">
                 {!displayDescriptionInput ? (

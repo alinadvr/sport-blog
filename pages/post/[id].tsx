@@ -11,7 +11,7 @@ import {
 } from "../../lib/getReformattedData";
 
 import { Layout } from "../../components/layout/Layout";
-import { OnePost } from "../../features/posts/components/OnePost/OnePost";
+import { OnePost } from "../../features/posts/components/OnePost";
 
 interface PostPageProps {
   post: PostComponentDataType;

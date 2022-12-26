@@ -44,18 +44,18 @@ export const OnePost = ({
   const markdownToHTML = useMemo(() => md.render(text), [text]);
 
   return (
-    <div className="post">
+    <div className="grid gap-5 rounded-xl bg-white p-5 text-center">
       <h1 className="text-4xl font-bold tracking-tighter">{title}</h1>
-      <div className="flex justify-between text-gray-300">
+      <div className="flex justify-between text-gray-400">
         <p>{transformDate(date)}</p>
         <Link href={`/account/${authorId}`}>
           <a className="hover:underline">{author}</a>
         </Link>
       </div>
-      <div className="mx-auto rounded-xl">
-        <div className="relative mx-auto h-[300px]" style={{ height: 400 }}>
+      <div>
+        <div className="relative mx-auto h-[400px]">
           <Image
-            src={image.startsWith("http") ? image : `/images/posts/${image}`}
+            src={`/images/posts/${image}`}
             alt="Post image"
             layout="fill"
             objectFit="cover"
@@ -63,38 +63,23 @@ export const OnePost = ({
             className="rounded-xl"
           />
         </div>
-        <div className="text-gray my-2 flex items-center justify-between">
-          <div
-            className="rounded-full bg-red p-2 text-white"
-            style={{
-              backgroundColor: "#FB7777",
-            }}
-          >
-            {category}
-          </div>
-          <div className="flex w-28 items-center justify-between text-black sm:w-72">
-            <LikeButton
-              likes={likes}
-              size={"large"}
-              userId={userId}
-              postId={id}
-            />
-            <SaveButton
-              saved={saved}
-              size={"large"}
-              userId={userId}
-              postId={id}
-            />
-          </div>
-        </div>
-        <div
-          className="text-left text-xl text-black"
-          dangerouslySetInnerHTML={{ __html: markdownToHTML }}
-        />
       </div>
+      <div className="flex items-center justify-between">
+        <div className="rounded-full bg-red-400 py-1.5 px-3 text-white">
+          {category}
+        </div>
+        <div className="flex w-28 items-center justify-between text-black sm:w-32">
+          <LikeButton likes={likes} size="large" userId={userId} postId={id} />
+          <SaveButton saved={saved} size="large" userId={userId} postId={id} />
+        </div>
+      </div>
+      <div
+        className="grid gap-3 text-left text-xl leading-8"
+        dangerouslySetInnerHTML={{ __html: markdownToHTML }}
+      />
       <CommentInputField postId={id} userId={userId} />
       {!comments.length ? (
-        <p className="my-6 text-lg text-gray-300">No comments yet..</p>
+        <p className="my-6 text-lg text-gray-400">No comments yet..</p>
       ) : (
         comments.map((comment) => (
           <Comment key={comment.id} {...comment} userId={comment.user_id} />

@@ -31,7 +31,7 @@ const Posts: NextPage<PostsPageProps> = ({ userPosts, categories, user }) => {
       categories={categories}
       isBackToBlogButton={true}
       avatar={user.image}
-      allPosts={posts}
+      allPosts={userPosts}
       setPostsByParameter={setPosts}
     >
       <div className="mx-auto mb-5 flex w-5/6 items-center justify-center sm:justify-between">
@@ -47,13 +47,10 @@ const Posts: NextPage<PostsPageProps> = ({ userPosts, categories, user }) => {
               <SmallPost
                 isUserPosts={true}
                 key={post.id}
-                id={post.id}
-                image={post.image}
+                {...post}
                 likes={post.likes_user_id}
                 saved={post.saved_user_id}
-                title={post.title}
-                text={post.text}
-                author={post.author}
+                authorId={post.author_id}
                 userId={user?.id}
               />
             ))}

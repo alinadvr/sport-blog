@@ -7,28 +7,11 @@
 
 html {
     background-color: #F5F5F5;
+    height: 100%;
 }
 
-.activeButton {
-    background-color: #42A4FF;
-    color: white;
-}
-
-.posts {
-    padding: 1em;
-    display: grid;
-    gap: 0.7em;
-}
-
-.post {
-    margin: auto;
-    border: solid 2px #E6E6E6;
-    border-radius: 0.75em;
-    background-color: white;
-    text-align: center;
-    padding: 1em;
-    display: grid;
-    gap: 1rem;
+body {
+    height: 100%;
 }
 
 .central-container {

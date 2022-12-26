@@ -10,7 +10,7 @@ export function FileUploadInput({
   setUploadedImage,
 }: FileUploadInputProps) {
   function onChange(file: File) {
-    const fileExtension = file.name.split(".")[1];
+    const fileExtension = file.name.split(".")[1].toLowerCase();
     if (
       fileExtension === "png" ||
       fileExtension === "jpeg" ||
@@ -23,7 +23,7 @@ export function FileUploadInput({
   }
 
   return (
-    <label className="cursor-pointer text-gray-300">
+    <label className="cursor-pointer text-gray-400">
       {title}
       <input
         type="file"

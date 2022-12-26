@@ -7,6 +7,8 @@ import { isUserLogged } from "../lib/getUser";
 import { Layout } from "../components/layout/Layout";
 import { TextInput } from "../components/inputs/TextInput";
 import { PrimaryButton } from "../components/buttons/PrimaryButton";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
@@ -18,19 +20,28 @@ const Login: NextPage = () => {
 
   const handleLogIn = async () => {
     setIsLoading(true);
-    const response = await fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
 
-    if (response.ok) {
+    let status = false;
+    await axios
+      .post("/api/login", { email, password })
+      .then(() => {
+        status = true;
+      })
+      .catch((err) => {
+        status = false;
+        if (!err.response.data.message) {
+          toast.error(`Error: ${err.message}`);
+        } else {
+          setError(err.response.data.message);
+        }
+      });
+
+    setIsLoading(false);
+
+    if (status) {
       setError("");
       await router.push("/");
-    } else {
-      setError("Invalid email or password");
-      // toast.error(`Error: ${response.statusText}`);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -60,7 +71,7 @@ const Login: NextPage = () => {
           )}
           <div className="flex items-center justify-between">
             <Link href="/signup">
-              <a className="cursor-pointer text-left text-sm text-black hover:underline sm:text-base">
+              <a className="cursor-pointer text-left text-sm text-gray-400 hover:underline sm:text-base">
                 Do not have an account?
               </a>
             </Link>

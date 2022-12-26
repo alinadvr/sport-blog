@@ -33,8 +33,6 @@ async function editPostRoute(req: NextApiRequest, res: NextApiResponse) {
         .status(400)
         .json({ message: "Missing title, category, text or image" });
 
-    console.log(postData.id);
-
     await axios.patch(`http://localhost:3001/posts/${Number(postData.id)}`, {
       title: postData.title,
       image: postData.image.newFilename,

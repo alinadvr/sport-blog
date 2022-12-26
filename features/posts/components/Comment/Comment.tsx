@@ -10,23 +10,22 @@ interface CommentProps {
 
 export const Comment = ({ user, userId, userImage, text }: CommentProps) => {
   return (
-    <div className="flex">
-      <div>
-        <div style={{ height: 50, width: 50, position: "absolute" }}>
-          <Image
-            src={
-              userImage ? `/images/avatars/${userImage}` : "/images/avatar.svg"
-            }
-            alt="User's avatar"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
-        </div>
+    <div className="flex items-center">
+      <div className="relative h-12 w-12">
+        <Image
+          src={
+            userImage ? `/images/avatars/${userImage}` : "/images/avatar.svg"
+          }
+          alt="User's avatar"
+          layout="fill"
+          objectFit="cover"
+          className="rounded-full"
+          quality={100}
+        />
       </div>
-      <div className="ml-3 w-5/6 text-left sm:w-full">
+      <div className="ml-2 w-5/6 text-left sm:w-full">
         <Link href={`/account/${userId}`}>
-          <a className="text-lg text-gray-300">{user || "Deleted user"}</a>
+          <a className="text-gray-400">{user || "Deleted user"}</a>
         </Link>
         <p className="text-lg text-black">{text}</p>
       </div>

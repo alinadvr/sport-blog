@@ -46,10 +46,10 @@ export const PrimaryButton = ({
             onClick && onClick();
           }}
           className={classNames(
-            "h-12 w-28 rounded-full bg-blue font-medium text-white",
+            "h-12 w-28 rounded-full bg-blue-400 font-medium text-white transition-all",
             disabled
               ? "opacity-50"
-              : "bg-blue hover:border-2 hover:border-blue hover:bg-white hover:text-blue"
+              : "bg-blue-400 hover:border-2 hover:border-blue-400 hover:bg-white hover:text-blue-400"
           )}
           disabled={disabled || isLoading}
         >
@@ -59,7 +59,7 @@ export const PrimaryButton = ({
     case "link":
       return (
         <Link href={to}>
-          <a className="flex h-12 w-full items-center justify-center rounded-full bg-blue font-medium text-white hover:border-2 hover:border-blue hover:bg-white hover:text-blue sm:w-44">
+          <a className="flex h-10 w-full items-center justify-center rounded-full bg-blue-400 font-medium text-white transition-all hover:border-2 hover:border-blue-400 hover:bg-white hover:text-blue-400 sm:w-40">
             {title}
           </a>
         </Link>

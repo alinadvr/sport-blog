@@ -42,37 +42,32 @@ export const Post = ({
     <div className="rounded-xl bg-white">
       <div className="relative h-64 sm:h-80">
         <Image
-          src={image.startsWith("http") ? image : `/images/posts/${image}`}
+          src={`/images/posts/${image}`}
           alt="Post image"
           layout="fill"
           objectFit="cover"
           className="rounded-xl"
         />
       </div>
-      <div className="posts">
-        <h1 className="text-2xl font-bold text-black">{title}</h1>
-        <div className="flex items-center justify-between text-gray-300">
+      <div className="grid gap-3 p-4">
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <div className="flex items-center justify-between text-gray-400">
           <Link href={`/account/${authorId}`}>
             <a className="hover:underline">{author}</a>
           </Link>
-          <p
-            className="rounded-full bg-red p-2 text-white"
-            style={{
-              backgroundColor: "#FB7777",
-            }}
-          >
+          <p className="rounded-full bg-red-400 py-1.5 px-3 text-white">
             {category}
           </p>
         </div>
         <div
-          className="text-gray-300"
+          className="text-gray-400"
           dangerouslySetInnerHTML={{ __html: markdownToHTML }}
         />
         <div className="justify-between sm:flex">
           <Link href={`/post/${id}`}>
             <a className="flex items-center">
-              <p className="text-lg text-red sm:text-xl">Read article</p>
-              <ArrowLongRightIcon className="w-8 text-red" />
+              <p className="text-lg text-red-400 sm:text-xl">Read article</p>
+              <ArrowLongRightIcon className="w-8 text-red-400" />
             </a>
           </Link>
           <div className="flex w-28 items-center justify-between sm:w-32">

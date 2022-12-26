@@ -1,20 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
-import { Remarkable } from "remarkable";
 
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { Remarkable } from "remarkable";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { LikeButton } from "../../../../components/buttons/LikeButton";
 import { SaveButton } from "../../../../components/buttons/SaveButton";
-import { SecondaryButton } from "../../../../components/buttons/SecondaryButton";
 
 interface SmallPostProps {
   isUserPosts: boolean;
   id: number;
   title: string;
   author: string;
+  authorId: number;
   text: string;
   image: string;
   likes: number[];
@@ -27,6 +28,7 @@ export const SmallPost = ({
   id,
   title,
   author,
+  authorId,
   text,
   image,
   likes,
@@ -44,24 +46,20 @@ export const SmallPost = ({
   const router = useRouter();
 
   const handleDeletePost = async () => {
-    const response = await fetch("/api/post/delete", {
-      method: "POST",
-      body: JSON.stringify({
-        id,
-      }),
-    });
+    let status = false;
+    await axios
+      .post("/api/post/delete", { id, image })
+      .then(() => (status = true))
+      .catch((error) => toast.error(`Error: ${error.message}`));
 
-    if (response.ok) {
+    if (status) {
       await router.reload();
-    } else {
-      toast.error(`Error: ${response.statusText}`);
     }
   };
-  console.log(image);
 
   return (
     <div>
-      <div className="rounded-xl border-2 border-gray-200 bg-white">
+      <div className="rounded-xl bg-white">
         <div className="relative h-64 w-full">
           <Image
             src={`/images/posts/${image}`}
@@ -72,25 +70,21 @@ export const SmallPost = ({
             quality={100}
           />
         </div>
-        {/*m-10 and height doesn't work*/}
-        <div
-          style={{ height: 200, margin: 10 }}
-          className="flex flex-col justify-between overflow-hidden"
-        >
+        <div className="flex flex-col justify-between p-2.5">
           <div className="grid gap-1">
             <h1 className="text-xl font-bold">{title}</h1>
-            <Link href={`/account/`}>
-              <a className="text-gray-300 hover:underline">{author}</a>
+            <Link href={`/account/${authorId}`}>
+              <a className="text-gray-400 hover:underline">{author}</a>
             </Link>
             <div
-              className="mb-2 text-gray-300"
+              className="max-h-40 overflow-hidden text-gray-400"
               dangerouslySetInnerHTML={{ __html: markdownToHTML }}
             />
           </div>
 
           <div className="flex justify-between">
             <Link href={`/post/${id}`}>
-              <a className="mr-2 flex items-center text-lg text-red">
+              <a className="mr-2 flex items-center text-lg text-red-400">
                 Read article
               </a>
             </Link>
@@ -112,20 +106,14 @@ export const SmallPost = ({
         </div>
       </div>
       {isUserPosts && (
-        <div className="flex justify-between">
-          <div className="mt-2 flex w-full">
-            <SecondaryButton to={`post/edit/${id}`} title="Edit" type="link">
-              <PencilIcon
-                className="cursor-pointer"
-                style={{ width: 20, marginLeft: 10 }}
-              />
-            </SecondaryButton>
-            <SecondaryButton
-              title="Delete"
-              type="button"
-              onClick={handleDeletePost}
-              buttonType="button"
-            />
+        <div className="flex w-full justify-end">
+          <div className="mt-2 flex w-24 justify-between">
+            <Link href={`post/edit/${id}`}>
+              <PencilSquareIcon className="w-10 cursor-pointer rounded-full bg-white p-2 text-gray-400 transition-all hover:text-gray-700" />
+            </Link>
+            <button type="button" onClick={handleDeletePost}>
+              <TrashIcon className="w-10 cursor-pointer rounded-full bg-white p-2 text-gray-400 transition-all hover:text-gray-700" />
+            </button>
           </div>
         </div>
       )}

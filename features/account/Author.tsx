@@ -19,36 +19,34 @@ export const Author = ({
   userPosts,
 }: AuthorProps) => {
   return (
-    <div className="mx-auto w-3/4">
-      <div className="mt-8 justify-items-start sm:flex">
-        <div className="mx-auto flex w-2/3 flex-col items-center sm:w-fit">
+    <div className="mx-auto grid w-3/4 gap-5">
+      <div className="rounded-xl bg-white p-4 sm:flex">
+        <div className="flex items-center">
           <Image
-            src={image || "/images/avatar.svg"}
-            width={250}
-            height={250}
+            src={image ? `/images/avatars/${image}` : "/images/avatar.svg"}
+            width={230}
+            height={230}
             alt="User's avatar"
             layout="fixed"
+            objectFit="cover"
             className="rounded-full"
+            quality={100}
           />
         </div>
-        <div className="w-9/12 sm:ml-6">
-          <p className="mr-3 text-center text-3xl text-black-200 sm:text-left">
-            {nickname}
-          </p>
-          <p className="mr-3 block text-gray">{description}</p>
+        <div className="ml-4 w-full">
+          <p className="text-3xl tracking-tight">{nickname}</p>
+          <p className="text-gray-400">Posts amount: {userPosts.length}</p>
+          <p className="text-gray-400">{description}</p>
         </div>
       </div>
-      <div className="mt-6 mb-3 h-0.5 w-full rotate-180 bg-gray-200" />
-      <div className="grid-cols-3 gap-x-10 gap-y-6 sm:grid">
+      <div className="h-[1px] w-full rotate-180 bg-gray-300" />
+      <div className="grid gap-y-6 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3 2xl:grid-cols-4">
         {userPosts.map((post) => (
           <SmallPost
             key={post.id}
             isUserPosts={false}
-            id={post.id}
-            title={post.title}
-            author={post.author}
-            image={post.image}
-            text={post.text}
+            {...post}
+            authorId={post.author_id}
             likes={post.likes_user_id}
             saved={post.saved_user_id}
             userId={userId}
