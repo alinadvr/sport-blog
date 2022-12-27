@@ -33,7 +33,7 @@ interface CreatePostProps extends CommonPostProps {
   postTitle?: never;
   postCategoryId?: never;
   postText?: never;
-  postImagePreview?: never;
+  postImage?: never;
 }
 
 interface EditPostPropsPostProps extends CommonPostProps {
@@ -41,7 +41,7 @@ interface EditPostPropsPostProps extends CommonPostProps {
   postTitle: string;
   postCategoryId: number;
   postText: string;
-  postImagePreview: string;
+  postImage: string;
 }
 
 export const CreateEditPost = ({
@@ -52,7 +52,7 @@ export const CreateEditPost = ({
   postTitle,
   postCategoryId,
   postText,
-  postImagePreview,
+  postImage,
 }: CreatePostProps | EditPostPropsPostProps) => {
   let newEditorState: EditorState = EditorState.createEmpty();
   const router = useRouter();
@@ -89,15 +89,13 @@ export const CreateEditPost = ({
     formData.append("categoryId", categoryId.toString());
     formData.append("text", getTextFromEditor(text));
     formData.append("authorId", userId.toString());
+    postImage && formData.append("oldImage", postImage);
 
-    if (!postImagePreview) {
+    if (!postImage) {
       if (uploadedImage) formData.append("image", uploadedImage);
       else setError("Image is required");
     } else {
-      formData.append(
-        "image",
-        uploadedImage ? uploadedImage : postImagePreview
-      );
+      formData.append("image", uploadedImage ? uploadedImage : postImage);
     }
 
     setError("");
@@ -138,13 +136,11 @@ export const CreateEditPost = ({
               options={categories}
               onChange={setCategoryId}
             />
-            {(imagePreview || postImagePreview) && (
+            {(imagePreview || postImage) && (
               <div className="relative h-[300px] w-full">
                 <Image
                   src={
-                    imagePreview
-                      ? imagePreview
-                      : `/images/posts/${postImagePreview}`
+                    imagePreview ? imagePreview : `/images/posts/${postImage}`
                   }
                   layout="fill"
                   objectFit="cover"

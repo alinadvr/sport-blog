@@ -24,6 +24,8 @@ interface AccountPageProps {
 }
 
 const Account: NextPage<AccountPageProps> = ({ user, userPosts }) => {
+  const oldImage = user.image;
+
   const [nickname, setNickname] = useState(user.nickname);
   const [description, setDescription] = useState(user.description);
   const [previewImage, setPreviewImage] = useState("");
@@ -47,6 +49,7 @@ const Account: NextPage<AccountPageProps> = ({ user, userPosts }) => {
     if (uploadedImage) {
       formData.append("image", uploadedImage);
     }
+    formData.append("oldImage", oldImage);
 
     await axios
       .post("/api/account/changeUserData", formData)

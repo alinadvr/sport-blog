@@ -20,17 +20,22 @@ async function changeUserDataRoute(req: NextApiRequest, res: NextApiResponse) {
   } catch (error) {
     await fs.mkdir(path.join(process.cwd() + "/public/images/avatars"));
   }
+
   const newUserData = await getFormData(req, "avatars");
 
   try {
     if (!newUserData.nickname)
       return res.status(400).json({ message: "Missing nickname" });
 
+    if (newUserData.image) {
+      await fs.unlink(`./public/images/avatars/${newUserData.oldImage}`);
+    }
+
     const changedUser = {
       ...req.session.user,
       nickname: newUserData.nickname,
       description: newUserData.description,
-      image: newUserData?.image?.newFilename || req.session.user.image,
+      image: newUserData?.image?.newFilename || newUserData.oldImage,
     };
 
     await axios.patch(

@@ -33,7 +33,7 @@ const Edit: NextPage<EditPageProps> = ({ user, post, categories }) => {
         postTitle={post.title}
         postCategoryId={post.category_id}
         postText={post.text}
-        postImagePreview={post.image}
+        postImage={post.image}
       />
     </Layout>
   );

@@ -27,15 +27,20 @@ async function editPostRoute(req: NextApiRequest, res: NextApiResponse) {
       !postData.title ||
       !postData.categoryId ||
       !postData.text ||
+      !postData.oldImage ||
       !postData.image
     )
       return res
         .status(400)
         .json({ message: "Missing title, category, text or image" });
 
+    if (postData.image) {
+      await fs.unlink(`./public/images/posts/${postData.oldImage}`);
+    }
+
     await axios.patch(`http://localhost:3001/posts/${Number(postData.id)}`, {
       title: postData.title,
-      image: postData.image.newFilename,
+      image: postData?.image?.newFilename || postData.oldImage,
       category_id: Number(postData.categoryId),
       text: postData.text,
     });

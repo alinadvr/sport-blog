@@ -17,7 +17,7 @@ export const CommentInputField = ({
 
   async function handleSubmit() {
     if (userId) {
-      const response = await fetch("/api/addComment", {
+      const response = await fetch("/api/comment/create", {
         method: "POST",
         body: JSON.stringify({ userId, postId, text: commentText }),
       });

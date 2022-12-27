@@ -6,6 +6,7 @@ interface userDataType {
   id: string;
   nickname: string;
   description: string;
+  oldImage: string;
   image?: formidable.File;
   title?: never;
   categoryId?: never;
@@ -14,12 +15,13 @@ interface userDataType {
 }
 
 interface postDataType {
+  id: string;
   title: string;
   categoryId: string;
   text: string;
   image: formidable.File;
+  oldImage: string;
   authorId: string;
-  id?: never;
   nickname?: never;
   description?: never;
 }

@@ -82,7 +82,12 @@ export const OnePost = ({
         <p className="my-6 text-lg text-gray-400">No comments yet..</p>
       ) : (
         comments.map((comment) => (
-          <Comment key={comment.id} {...comment} userId={comment.user_id} />
+          <Comment
+            key={comment.id}
+            {...comment}
+            userId={comment.user_id}
+            currentUserId={userId}
+          />
         ))
       )}
     </div>

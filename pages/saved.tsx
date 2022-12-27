@@ -43,14 +43,11 @@ const Saved: NextPage<SavedPageProps> = ({ savedPosts, categories, user }) => {
               <SmallPost
                 isUserPosts={false}
                 key={post.id}
-                id={post.id}
+                {...post}
                 saved={post.saved_user_id}
-                image={post.image}
                 likes={post.likes_user_id}
-                title={post.title}
-                text={post.text}
-                author={post.author}
                 userId={user?.id}
+                authorId={post.author_id}
               />
             ))}
           </div>
