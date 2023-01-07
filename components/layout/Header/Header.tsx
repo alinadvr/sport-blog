@@ -95,7 +95,7 @@ export const Header = ({ isLoggedIn, categories, userAvatar }: Props) => {
                   width={60}
                   height={60}
                   alt="Avatar Icon"
-                  className="rounded-full"
+                  className="rounded-full focus:outline-none"
                   objectFit="cover"
                   quality={100}
                 />

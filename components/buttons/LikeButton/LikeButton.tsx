@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
+import axios from "axios";
 
 interface LikeButtonProps {
   size: string;
@@ -26,24 +27,25 @@ export const LikeButton = ({
 
   async function handleClick() {
     if (userId) {
-      let updatedLikes;
+      let updatedLikes: number[];
       if (likesAmount.includes(userId)) {
         updatedLikes = likesAmount.filter((user) => user !== userId);
       } else {
         updatedLikes = [...likesAmount, userId];
       }
 
-      const response = await fetch("/api/changePost", {
-        method: "POST",
-        body: JSON.stringify({ updatedLikes, postId }),
-      });
-
-      if (response.ok) {
-        setIsLiked((prevState) => !prevState);
-        setLikesAmount(updatedLikes);
-      } else {
-        toast.error(`Error: ${response.statusText}`);
-      }
+      await axios
+        .post("/api/changePost", {
+          updatedLikes,
+          postId,
+        })
+        .then(() => {
+          setIsLiked((prevState) => !prevState);
+          setLikesAmount(updatedLikes);
+        })
+        .catch((error) => {
+          toast.error(`Error: ${error.message}`);
+        });
     } else {
       await router.push("/login");
     }

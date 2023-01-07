@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BookmarkIcon as BookmarkIconOutline } from "@heroicons/react/24/outline";
 import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
+import axios from "axios";
 
 interface SaveButtonProps {
   size: string;
@@ -25,24 +26,25 @@ export const SaveButton = ({
 
   async function handleClick() {
     if (userId) {
-      let updatedSaved;
+      let updatedSaved: number[];
       if (savedAmount.includes(userId)) {
         updatedSaved = savedAmount.filter((user) => user !== userId);
       } else {
         updatedSaved = [...savedAmount, userId];
       }
 
-      const response = await fetch("/api/changePost", {
-        method: "POST",
-        body: JSON.stringify({ updatedSaved, postId }),
-      });
-
-      if (response.ok) {
-        setIsSaved((prevState) => !prevState);
-        setSavedAmount(updatedSaved);
-      } else {
-        toast.error(`Error: ${response.statusText}`);
-      }
+      await axios
+        .post("/api/changePost", {
+          updatedSaved,
+          postId,
+        })
+        .then(() => {
+          setIsSaved((prevState) => !prevState);
+          setSavedAmount(updatedSaved);
+        })
+        .catch((error) => {
+          toast.error(`Error: ${error.message}`);
+        });
     } else {
       await router.push("/login");
     }

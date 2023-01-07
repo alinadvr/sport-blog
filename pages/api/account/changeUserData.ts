@@ -22,12 +22,13 @@ async function changeUserDataRoute(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const newUserData = await getFormData(req, "avatars");
+  console.log(newUserData);
 
   try {
     if (!newUserData.nickname)
       return res.status(400).json({ message: "Missing nickname" });
 
-    if (newUserData.image) {
+    if (newUserData.image && newUserData.oldImage) {
       await fs.unlink(`./public/images/avatars/${newUserData.oldImage}`);
     }
 

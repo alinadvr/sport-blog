@@ -34,7 +34,7 @@ async function editPostRoute(req: NextApiRequest, res: NextApiResponse) {
         .status(400)
         .json({ message: "Missing title, category, text or image" });
 
-    if (postData.image) {
+    if (postData.image && postData.oldImage) {
       await fs.unlink(`./public/images/posts/${postData.oldImage}`);
     }
 

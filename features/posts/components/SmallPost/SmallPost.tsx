@@ -35,8 +35,8 @@ export const SmallPost = ({
   saved,
   userId,
 }: SmallPostProps) => {
-  if (title.length > 50) {
-    title = title.slice(0, 45).concat("...");
+  if (title.length > 30) {
+    title = title.slice(0, 30).concat("...");
   }
   if (text.length > 150) {
     text = text.slice(0, 150).concat("...");
@@ -72,7 +72,9 @@ export const SmallPost = ({
         </div>
         <div className="flex flex-col justify-between p-2.5">
           <div className="grid gap-1">
-            <h1 className="text-xl font-bold">{title}</h1>
+            <h1 className="max-h-7 overflow-hidden text-xl font-bold">
+              {title}
+            </h1>
             <Link href={`/account/${authorId}`}>
               <a className="text-gray-400 hover:underline">{author}</a>
             </Link>

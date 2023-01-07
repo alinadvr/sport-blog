@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { classNames } from "../../../utils/classNames";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 interface CommentInputFieldProps {
   postId: number;
@@ -17,15 +18,16 @@ export const CommentInputField = ({
 
   async function handleSubmit() {
     if (userId) {
-      const response = await fetch("/api/comment/create", {
-        method: "POST",
-        body: JSON.stringify({ userId, postId, text: commentText }),
-      });
+      let status: boolean = false;
+      await axios
+        .post("/api/comment/create", { userId, postId, text: commentText })
+        .then(() => (status = true))
+        .catch((error) => {
+          toast.error(`Error: ${error.message}`);
+        });
 
-      if (response.ok) {
+      if (status) {
         await router.reload();
-      } else {
-        toast.error(`Error: ${response.statusText}`);
       }
     } else {
       await router.push("/login");

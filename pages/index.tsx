@@ -60,7 +60,7 @@ const Home: NextPage<HomeProps> = ({
           <div className="mx-auto flex w-40 justify-center">
             <button
               onClick={() => setPostsAmount((prevState) => prevState + 2)}
-              className="border-blue rounded-full border-2 bg-white px-10 py-2 text-xl"
+              className="rounded-full border-2 border-blue-400 bg-white px-10 py-2 text-xl"
             >
               More
             </button>

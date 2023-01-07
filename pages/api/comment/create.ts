@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default withIronSessionApiRoute(addCommentRoute, sessionOptions);
 
 async function addCommentRoute(req: NextApiRequest, res: NextApiResponse) {
-  const { userId, postId, text } = JSON.parse(req.body);
+  const { userId, postId, text } = req.body;
   try {
     const { data } = await axios.post("http://localhost:3001/comments", {
       id: null,

@@ -6,7 +6,7 @@ import axios from "axios";
 export default withIronSessionApiRoute(changePostRoute, sessionOptions);
 
 async function changePostRoute(req: NextApiRequest, res: NextApiResponse) {
-  const body = JSON.parse(req.body);
+  const body = req.body;
   try {
     let changedPost;
     if (body.updatedLikes) {
