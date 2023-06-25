@@ -116,6 +116,14 @@
       "password": "$2b$12$/uyd38JWsDJEgQhDhZSbh.7Qrvfk3HEFmryZ5wLG3sDqhi7SdfZpG",
       "image": "1673051207670_hobestavatar.jpg",
       "description": "Hi everyone! My name is Ho Best and I am British. I finished the full course about anatomy and nutrition. These are the main topics of my articles. You are welcome to save and share it with ypur friends. Hope you will find it useful and interesting! "
+    },
+    {
+      "id": 3,
+      "nickname": "Anonymous",
+      "email": "dvoryannykova@gmail.com",
+      "password": "$2b$12$9oCSwfZyi38YKvI1VDlq/e1CR2yTSLGbxQi.PKeeyKgyv6zEmNIXu",
+      "image": "",
+      "description": "I am a new user here!"
     }
   ]
 }

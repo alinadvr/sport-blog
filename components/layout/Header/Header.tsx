@@ -1,18 +1,18 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import {
   CategoriesDataType,
   PostComponentDataType,
 } from "../../../lib/getReformattedData";
-import { Bars3Icon } from "@heroicons/react/24/outline";
 
-import { SignUpButton } from "../../buttons/SignUpButton";
+import { classNames } from "../../../utils/classNames";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
+import { SignUpButton } from "../../buttons/SignUpButton";
+import { SearchInput } from "../../inputs/SearchInput";
 import { DesktopMenu } from "../Navbar/DesktopMenu";
 import { MobileMenu } from "../Navbar/MobileMenu";
-import { SearchInput } from "../../inputs/SearchInput";
-import { classNames } from "../../../utils/classNames";
 
 interface Props {
   isLoggedIn: boolean;
@@ -28,10 +28,12 @@ export const Header = ({ isLoggedIn, categories, userAvatar }: Props) => {
   const accountBlockDesktopRef = React.useRef<HTMLInputElement>(null);
   const accountBlockMobileRef = React.useRef<HTMLInputElement>(null);
 
-  const handleOutsideClick = (event: any) => {
+  const handleOutsideClick = (event: MouseEvent) => {
     if (
-      !event.path.includes(accountBlockDesktopRef.current) &&
-      !event.path.includes(accountBlockMobileRef.current)
+      accountBlockDesktopRef.current &&
+      !event.composedPath().includes(accountBlockDesktopRef.current) &&
+      accountBlockMobileRef.current &&
+      !event.composedPath().includes(accountBlockMobileRef.current)
     ) {
       setIsBlockVisible(false);
     }

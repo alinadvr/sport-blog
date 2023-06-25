@@ -98,6 +98,8 @@ export const CreateEditPost = ({
       formData.append("image", uploadedImage ? uploadedImage : postImage);
     }
 
+    console.log(uploadedImage)
+
     setError("");
     let status = false;
     await axios

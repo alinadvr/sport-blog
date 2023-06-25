@@ -22,6 +22,7 @@ async function createPostRoute(req: NextApiRequest, res: NextApiResponse) {
     await fs.mkdir(path.join(process.cwd() + "/public/images/posts"));
   }
   const postData = await getFormData(req, "posts");
+  console.log(postData)
 
   try {
     if (
